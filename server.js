@@ -18,7 +18,7 @@ app.get('/teams/:teamName', function (req, response) {
             const teams = JSON.parse(data).league.standard
             const teamIndex = teams.findIndex(t => t.urlName == teamName)
             if (teamIndex == -1) {
-                response.send("wrong team name")
+                response.send("error")
                 return
             }
             const teamId = teams[teamIndex].teamId
@@ -32,7 +32,7 @@ app.get('/teams/:teamName', function (req, response) {
                     const player = new Player(p.firstName, p.lastName, p.personId, p.teamId, p.jersey, p.pos)
                     return player
                 })
-                response.send({ players })
+                response.send(players)
             })
         })
     } catch (e) {

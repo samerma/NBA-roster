@@ -3,8 +3,14 @@ const fetchPlayers = function () {
 
     $.get(`teams/${input}`, function (data) {
         $("#players").empty()
-        for (let player of data) {
-            $("#players").append(`<p>${player}</p>`)
+        if (data !== 'error') {
+            const source = $('#player-template').html()
+            const template = Handlebars.compile(source)
+            let newHTML = template({ players: data })
+            $("#players").append(newHTML)
+        }
+        else {
+            $("#players").append(`<p>Enter valid team name!</p>`)
         }
     })
 }
