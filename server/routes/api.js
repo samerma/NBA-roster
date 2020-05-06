@@ -3,8 +3,9 @@ const router = express.Router()
 const urllib = require('urllib')
 
 const json = {
-    data: [],
-    teams: []
+    players: [],
+    teams: [],
+    dreamTeam: []
 }
 
 //get players
@@ -27,7 +28,7 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/teams.json', function (err,
         throw err; // you need to handle error
     }
     const teamsData = JSON.parse(data).league.standard
-    const teams = teamsData.map(t => { return { name: t.urlName, id: t.teamId } })
+    const teams = teamsData.map(t => { return { teamName: t.urlName, teamId: t.teamId } })
 
     json.teams = teams
     //console.log(json.teams);
@@ -36,14 +37,41 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/teams.json', function (err,
 
 router.get('/teams/:teamName', function (req, res) {
     const teamName = req.params.teamName
-    const team = json.teams.find(t => t.name == teamName)
+    const team = json.teams.find(t => t.teamName == teamName)
+    console.log(team);
+
     if (team == undefined) {
         res.send("error")
     }
     else {
-        const players = json.players.filter(p => p.teamId == team.id)
+        console.log(json.players);
+        const players = json.players.filter(p => p.teamId == team.teamId)
+
+
         res.send(players)
     }
+})
+
+router.get('/dreamTeam', function (req, res) {
+    res.send(json.dreamTeam)
+})
+
+router.post('/team', function (req, res) {
+    console.log("Someone's trying to make a post request")
+    console.log(req.body)
+    let team = req.body
+    json.teams.push(team)
+    //console.log(json.teams);
+
+    res.send("completed adding team")
+})
+
+router.post('/roster', function (req, res) {
+    let player = req.body
+    json.dreamTeam.push(player)
+    console.log(json.dreamTeam);
+
+    res.send("completed adding player to roster")
 })
 
 
@@ -58,4 +86,9 @@ class Player {
         this.pos = pos
     }
 }
+let p1 = new Player('samer', 'M', '1', '1', '4', 'G')
+let p2 = new Player('hassan', 'spacetoon', '2', '2', '8', 'C')
+json.dreamTeam.push(p1)
+json.dreamTeam.push(p2)
+
 module.exports = router

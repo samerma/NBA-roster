@@ -14,8 +14,10 @@
 
 <body>
       <div id="container">
-            <div><input type="text">
+            <div>
+                  <input type="text">
                   <button onclick=fetchPlayers()>show</button>
+                  <button id="dream-team-btn">Dream Team</button>
             </div>
             <div id="players"></div>
       </div>
@@ -28,6 +30,7 @@
                     <p class="jersey">{{jersey}}</p>
                     <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}">
                     <p class="pos">{{pos}}</p>
+                    <button class="add-player">add</button>
                 </div>
             {{/each}}
            </script>
