@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const urllib = require('urllib')
-
+const Player = require('./../../classes/player.js')
 const json = {
     players: [],
     teams: [],
@@ -44,10 +44,7 @@ router.get('/teams/:teamName', function (req, res) {
         res.send("error")
     }
     else {
-        console.log(json.players);
         const players = json.players.filter(p => p.teamId == team.teamId)
-
-
         res.send(players)
     }
 })
@@ -61,34 +58,14 @@ router.post('/team', function (req, res) {
     console.log(req.body)
     let team = req.body
     json.teams.push(team)
-    //console.log(json.teams);
-
     res.send("completed adding team")
 })
 
 router.post('/roster', function (req, res) {
     let player = req.body
     json.dreamTeam.push(player)
-    console.log(json.dreamTeam);
-
     res.send("completed adding player to roster")
 })
 
-
-
-class Player {
-    constructor(firstName, lastName, personId, teamId, jersey, pos) {
-        this.firstName = firstName
-        this.lastName = lastName
-        this.personId = personId
-        this.teamId = teamId
-        this.jersey = jersey
-        this.pos = pos
-    }
-}
-let p1 = new Player('samer', 'M', '1', '1', '4', 'G')
-let p2 = new Player('hassan', 'spacetoon', '2', '2', '8', 'C')
-json.dreamTeam.push(p1)
-json.dreamTeam.push(p2)
 
 module.exports = router

@@ -25,18 +25,19 @@
       <script id="player-template"
               type="text/x-handlebars-template">
               {{#each players}}
-                <div class="player">
+                <div class="player" data-personId = {{personId}} data-teamId={{teamId}}>
                     <p class="name">{{firstName}} {{lastName}}</p>
                     <p class="jersey">{{jersey}}</p>
                     <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}">
                     <p class="pos">{{pos}}</p>
-                    <button class="add-player">add</button>
+                    <button class="add-player-btn">add</button>
                 </div>
             {{/each}}
            </script>
 
       <script src="./handlebars/dist/handlebars.js"></script>
       <script src="./jquery/dist/jquery.js"></script>
+      <script src="renderer.js"></script>
       <script src="main.js"></script>
 </body>
 
