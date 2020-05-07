@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const urllib = require('urllib')
 const Player = require('./../../classes/player.js')
+
 const json = {
     players: [],
     teams: [],
@@ -20,7 +21,6 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/players.json', function (er
             return player
         })
     json.players = players
-    //console.log(json.players);
 })
 //get teams
 urllib.request('http://data.nba.net/10s/prod/v1/2018/teams.json', function (err, data, res) {
@@ -29,16 +29,13 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/teams.json', function (err,
     }
     const teamsData = JSON.parse(data).league.standard
     const teams = teamsData.map(t => { return { teamName: t.urlName, teamId: t.teamId } })
-
     json.teams = teams
-    //console.log(json.teams);
 })
 
 
 router.get('/teams/:teamName', function (req, res) {
     const teamName = req.params.teamName
     const team = json.teams.find(t => t.teamName == teamName)
-    console.log(team);
 
     if (team == undefined) {
         res.send("error")
@@ -62,9 +59,22 @@ router.post('/team', function (req, res) {
 })
 
 router.post('/roster', function (req, res) {
-    let player = req.body
-    json.dreamTeam.push(player)
-    res.send("completed adding player to roster")
+    const player = req.body
+    const exists = json.dreamTeam.findIndex(p => p.personId == player.personId)
+    if (exists === -1) {
+        json.dreamTeam.push(player)
+        res.send("success")
+    }
+    else {
+        res.send("failure")
+    }
+})
+
+router.delete('/roster/:personId', function (req, res) {
+    const personId = req.params.personId
+    const i = json.dreamTeam.findIndex(p => p.personId = personId)
+    json.dreamTeam.splice(i, 1)
+    res.send('deleted ' + personId)
 })
 
 

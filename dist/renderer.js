@@ -1,14 +1,17 @@
 class Renderer {
-    renderPlayers = function (data) {
+    renderPlayers = function (data, templateId) {
         $("#players").empty()
         if (data !== 'error') {
-            const source = $('#player-template').html()
+            const source = $('#' + templateId).html()
             const template = Handlebars.compile(source)
             let newHTML = template({ players: data })
+            console.log(data);
+
             $("#players").append(newHTML)
         }
         else {
             $("#players").append(`<p>Enter valid team name!</p>`)
         }
     }
+
 }

@@ -8,4 +8,3 @@ class Player {
         this.pos = pos
     }
 }
-module.exports = Player
