@@ -5,8 +5,6 @@ class Renderer {
             const source = $('#' + templateId).html()
             const template = Handlebars.compile(source)
             let newHTML = template({ players: data })
-            console.log(data);
-
             $("#players").append(newHTML)
         }
         else {

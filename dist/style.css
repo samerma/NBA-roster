@@ -1,18 +1,17 @@
 #players{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "p p p"; 
-    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "p p p p"; 
+    grid-gap: 20px;
     
 }
 
 .player{
     grid-area: "p";
-    border: 1px solid black;
-    background-color: gainsboro;
-    box-shadow: 1px 1px 3px #0a1612;
+    background-color: #f1faee;
+    box-shadow: 1px 1px 3px #ff9f1c;
     text-align: center;
-    
+    margin: 20px;
     height: 380px;
 }
 .name{
@@ -22,11 +21,44 @@
     
 }
 .image{
-    
+    margin: 5px;
     height: 220px;
-    max-width:100%;
+    max-width:90%;
 }
+
 .pos{
-   
-  
+
+}
+
+#search-bar{
+    position: relative;
+    background-color: #e9c46a;
+    padding: 20px;
+
+}
+input{
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 10px;
+  font-size: 17px;
+  width: 60%;
+}
+#show-btn{
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    width: 10%;
+}
+#dream-team-btn{
+    position: absolute;
+    right: 5%;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 10px;
+    font-size: 17px;
+    width: 15%;
+}
+#container{
+    min-height: 100vh;
+    background-color: cornsilk;
 }
