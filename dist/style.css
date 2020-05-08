@@ -1,64 +1,106 @@
 #players{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "p p p p"; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "p p p"; 
     grid-gap: 20px;
     
 }
 
 .player{
     grid-area: "p";
-    background-color: #f1faee;
-    box-shadow: 1px 1px 3px #ff9f1c;
+    background-color: #FFC43D;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     text-align: center;
+    height: 390px;
     margin: 20px;
-    height: 380px;
+    max-width: 80%;
 }
 .name{
-   
+   margin-bottom: 0;
+   font-family: 'Anton', sans-serif;
+   font-size: 21px;
 }
 .jersey{
-    
+    margin: 0;
+    font-family: 'Anton', sans-serif;
 }
 .image{
     margin: 5px;
     height: 220px;
-    max-width:90%;
+    max-width: 95%;
 }
 
 .pos{
-
+    font-family: 'Anton', sans-serif;
+    margin-top: 6px;
+    margin-bottom: 12px;
 }
 
 #search-bar{
     position: relative;
     background-color: #e9c46a;
-    padding: 20px;
-
+    padding: 10px;
 }
 input{
   padding: 6px;
-  margin-top: 8px;
   margin-right: 10px;
   font-size: 17px;
   width: 60%;
+  font-family: 'Arvo', serif;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 #show-btn{
     padding: 6px;
-    margin-top: 8px;
     font-size: 17px;
     width: 10%;
+    background-color: #1B9AAA;
+    border: none;
+    color: #F8FFE5;
+    font-family: 'Arvo', serif;
+    cursor: pointer;
 }
 #dream-team-btn{
     position: absolute;
     right: 5%;
     padding: 6px;
-    margin-top: 8px;
-    margin-right: 10px;
     font-size: 17px;
     width: 15%;
+    background-color: #06D6A0;
+    border: none;
+    color: #F8FFE5;
+    font-family: 'Arvo', serif;
+    cursor: pointer;
 }
 #container{
     min-height: 100vh;
-    background-color: cornsilk;
+    background-color: #F8FFE5;
 }
+.remove-player-btn{
+    background-color: #EF476F;
+    border: none;
+    color: #F8FFE5;
+    padding: 8px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Arvo', serif;
+    cursor: pointer;
+}
+.add-player-btn{
+    background-color: #1B9AAA;
+    border: none;
+    color: #F8FFE5;
+    padding: 8px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Arvo', serif;
+    cursor: pointer;
+}
+.added{
+    background-color: #06D6A0;
+    border: none;
+    color: #F8FFE5;
+    padding: 8px;
+    font-family: 'Arvo', serif;
+}
+button:active {
+    transform: translateY(2px);
+  }

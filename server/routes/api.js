@@ -17,7 +17,7 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/players.json', function (er
     const playersData = JSON.parse(data).league.standard
     const players = playersData.filter(p => p.isActive == true)
         .map(p => {
-            const player = new Player(p.firstName, p.lastName, p.personId, p.teamId, p.jersey, p.pos)
+            const player = new Player(p.firstName, p.lastName, p.personId, p.teamId, p.jersey, p.pos, false)
             return player
         })
     json.players = players
@@ -61,7 +61,9 @@ router.post('/team', function (req, res) {
 router.post('/roster', function (req, res) {
     const player = req.body
     const exists = json.dreamTeam.findIndex(p => p.personId == player.personId)
+    const pIndex = json.players.findIndex(p => p.personId == player.personId)
     if (exists === -1) {
+        json.players[pIndex].isDT = true
         json.dreamTeam.push(player)
         res.send("success")
     }
@@ -72,8 +74,10 @@ router.post('/roster', function (req, res) {
 
 router.delete('/roster/:personId', function (req, res) {
     const personId = req.params.personId
-    const i = json.dreamTeam.findIndex(p => p.personId = personId)
+    const i = json.dreamTeam.findIndex(p => p.personId == personId)
+    const j = json.players.findIndex(p => p.personId == personId)
     json.dreamTeam.splice(i, 1)
+    json.players[j].isDT = false
     res.send('deleted ' + personId)
 })
 

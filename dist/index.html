@@ -9,6 +9,8 @@
       <link rel="stylesheet"
             type="text/css"
             href="style.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Anton&family=Arvo&display=swap"
+            rel="stylesheet">
 </head>
 
 
@@ -17,7 +19,7 @@
             <div id="search-bar">
                   <input type="text">
                   <button id="show-btn"
-                          onclick=fetchPlayers()>show</button>
+                          onclick=fetchPlayers()>Show</button>
                   <button id="dream-team-btn">Dream Team</button>
             </div>
             <div id="players"></div>
@@ -31,7 +33,11 @@
                     <p class="jersey">{{jersey}}</p>
                     <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
                     <p class="pos">{{pos}}</p>
-                    <button class="add-player-btn">add</button>
+                    {{#if isDT}}
+                        <button disabled class="added">Added</button>
+                        {{else}}
+                        <button class="add-player-btn">Add To Roster</button>
+                    {{/if}}
                 </div>
             {{/each}}
            </script>
@@ -41,9 +47,9 @@
                 <div class="player" data-personId = "{{personId}}" data-teamId="{{teamId}}">
                     <p class="name">{{firstName}} {{lastName}}</p>
                     <p class="jersey">{{jersey}}</p>
-                    <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg">
+                    <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
                     <p class="pos">{{pos}}</p>
-                    <button class="remove-player-btn">remove</button>
+                    <button class="remove-player-btn">Remove</button>
                 </div>
             {{/each}}
            </script>

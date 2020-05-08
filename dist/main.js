@@ -2,7 +2,7 @@ const renderer = new Renderer()
 
 
 const fetchPlayers = function () {
-    let input = $("input").val()
+    let input = $("input").val().toLowerCase()
     if (input == '')
         input = 'empty'
     $.get(`teams/${input}`, function (data) {
@@ -28,7 +28,13 @@ $('#players').on('click', '.add-player-btn', function () {
     data.teamId = $player.data("teamid")
     data.jersey = $player.find('.jersey').text()
     data.pos = $player.find('.pos').text()
-
+    //animations
+    $player.animate({
+        opacity: 0.5,
+    }, 500, function () {
+        $player.find('button').prop('disabled', true)
+    })
+    //
     $.post('roster', data, function (res) {
         console.log(res);
         if (res == 'failure') {
