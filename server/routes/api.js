@@ -17,7 +17,7 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/players.json', function (er
     const playersData = JSON.parse(data).league.standard
     const players = playersData.filter(p => p.isActive == true)
         .map(p => {
-            const player = new Player(p.firstName, p.lastName, p.personId, p.teamId, p.jersey, p.pos, false)
+            const player = new Player(p.firstName, p.lastName, p.personId, p.teamId, p.jersey, p.pos, false, p.heightMeters, p.weightKilograms)
             return player
         })
     json.players = players

@@ -7,7 +7,6 @@ const fetchPlayers = function () {
         input = 'empty'
     $.get(`teams/${input}`, function (data) {
         renderer.renderPlayers(data, 'player-template')
-        $('#players').find('.stats').hide()
     })
 }
 const fetchDreamTeam = function () {
@@ -27,8 +26,10 @@ $('#players').on('click', '.add-player-btn', function () {
     data.lastName = $player.find('.name').text().split(' ')[1]
     data.personId = $player.data("personid")
     data.teamId = $player.data("teamid")
-    data.jersey = $player.find('.jersey').text()
+    data.jersey = $player.find('.jersey').text()       ////should i save player as data attribute instead??
     data.pos = $player.find('.pos').text()
+    data.height = $player.find('.height').text()
+    data.weight = $player.find('.weight').text()
     //animations
     $player.animate({
         opacity: 0.5,
@@ -58,8 +59,8 @@ $('#players').on('click', '.remove-player-btn', function () {
 })
 
 $('#players').on('mouseenter', '.image-container', function () {
-    $(this).find('.stats').show()
+    $(this).find('.stats').show(500)
 })
 $('#players').on('mouseleave', '.image-container', function () {
-    $(this).find('.stats').hide()
+    $(this).find('.stats').hide(500)
 })

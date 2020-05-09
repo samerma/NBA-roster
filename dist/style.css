@@ -35,7 +35,9 @@
 .stats{
     position: absolute;
     top: 0;
-    left: 0;
+    left: 10%;
+    text-align: left;
+    font-family: 'Arvo', serif
 }
 
 .pos{
@@ -71,7 +73,7 @@ input{
 #dream-team-btn{
     position: absolute;
     right: 5%;
-    padding: 6px;
+    padding: 8px;
     font-size: 17px;
     width: 15%;
     background-color: #06D6A0;
