@@ -24,10 +24,18 @@
     margin: 0;
     font-family: 'Anton', sans-serif;
 }
+.image-container{
+    position: relative;
+}
 .image{
     margin: 5px;
     height: 220px;
     max-width: 95%;
+}
+.stats{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .pos{
@@ -104,3 +112,4 @@ input{
 button:active {
     transform: translateY(2px);
   }
+

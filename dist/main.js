@@ -7,6 +7,7 @@ const fetchPlayers = function () {
         input = 'empty'
     $.get(`teams/${input}`, function (data) {
         renderer.renderPlayers(data, 'player-template')
+        $('#players').find('.stats').hide()
     })
 }
 const fetchDreamTeam = function () {
@@ -54,4 +55,11 @@ $('#players').on('click', '.remove-player-btn', function () {
             fetchDreamTeam()
         }
     })
+})
+
+$('#players').on('mouseenter', '.image-container', function () {
+    $(this).find('.stats').show()
+})
+$('#players').on('mouseleave', '.image-container', function () {
+    $(this).find('.stats').hide()
 })

@@ -31,7 +31,10 @@
                 <div class="player" data-personId = "{{personId}}" data-teamId="{{teamId}}">
                     <p class="name">{{firstName}} {{lastName}}</p>
                     <p class="jersey">{{jersey}}</p>
-                    <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
+                    <div class="image-container">
+                        <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
+                        <p class="stats">stats</p>
+                    </div>
                     <p class="pos">{{pos}}</p>
                     {{#if isDT}}
                         <button disabled class="added">Added</button>
