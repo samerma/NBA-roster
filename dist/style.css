@@ -51,10 +51,11 @@
     background-color: #e9c46a;
     padding: 10px;
 }
+
 input{
   padding: 6px;
   margin-right: 10px;
-  font-size: 17px;
+  font-size: 19px;
   width: 60%;
   font-family: 'Arvo', serif;
   text-transform: uppercase;
@@ -81,6 +82,10 @@ input{
     color: #F8FFE5;
     font-family: 'Arvo', serif;
     cursor: pointer;
+}
+#auto-complete{
+    display: block;
+    position: relative;
 }
 #container{
     min-height: 100vh;

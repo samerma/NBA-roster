@@ -11,16 +11,22 @@
             href="style.css" />
       <link href="https://fonts.googleapis.com/css2?family=Anton&family=Arvo&display=swap"
             rel="stylesheet">
+      <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet">
 </head>
 
 
 <body>
       <div id="container">
-            <div id="search-bar">
-                  <input type="text">
+
+            <div class="ui-widget"
+                 id="search-bar">
+                  <input type="text"
+                         placeholder="Enter Team Name...">
                   <button id="show-btn"
                           onclick=fetchPlayers()>Show</button>
                   <button id="dream-team-btn">Dream Team</button>
+                  <div id="auto-complete"></div>
             </div>
             <div id="players"></div>
       </div>
@@ -68,6 +74,7 @@
 
       <script src="./handlebars/dist/handlebars.js"></script>
       <script src="./jquery/dist/jquery.js"></script>
+      <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
       <script src="player.js"></script>
       <script src="renderer.js"></script>
       <script src="main.js"></script>

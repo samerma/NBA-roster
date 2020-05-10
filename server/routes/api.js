@@ -49,6 +49,12 @@ router.get('/teams/:teamName', function (req, res) {
 router.get('/dreamTeam', function (req, res) {
     res.send(json.dreamTeam)
 })
+router.get('/teamsList', function (req, res) {
+    const teamsList = json.teams.map(t => {
+        return t.teamName
+    })
+    res.send(teamsList)
+})
 
 router.post('/team', function (req, res) {
     console.log("Someone's trying to make a post request")

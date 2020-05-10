@@ -1,5 +1,5 @@
 const renderer = new Renderer()
-
+let teamsList = []
 
 const fetchPlayers = function () {
     let input = $("input").val().toLowerCase()
@@ -9,6 +9,7 @@ const fetchPlayers = function () {
         renderer.renderPlayers(data, 'player-template')
     })
 }
+
 const fetchDreamTeam = function () {
     $.get('dreamTeam', function (data) {
         renderer.renderPlayers(data, 'dream-team-template')
@@ -63,4 +64,23 @@ $('#players').on('mouseenter', '.image-container', function () {
 })
 $('#players').on('mouseleave', '.image-container', function () {
     $(this).find('.stats').hide(500)
+})
+
+$(function () {
+    let teams = ["hawks", "celtics", "bullets", "nets", "hornets", "bulls", "cavaliers", "mavericks",
+        "nuggets", "pistons", "warriors", "rockets", "pacers", "clippers", "lakers",
+        "grizzlies", "heat", "bucks", "timberwolves", "pelicans", "knicks", "thunder", "magic",
+        "sixers", "suns", "blazers", "kings", "spurs", "raptors", "jazz", "wizards"].map(t => {
+            return t.toUpperCase()
+        })
+    $('input').autocomplete({
+        source: teams,
+        appendTo: "#auto-complete"
+    })
+    $.ui.autocomplete.filter = function (array, term) {//overide filter method to only match from biginning of word
+        var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+        return $.grep(array, function (value) {
+            return matcher.test(value.label || value.value || value);
+        })
+    }
 })
