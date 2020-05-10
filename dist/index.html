@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible"
+            content="IE=edge">
+      <title>NBA Roster</title>
+      <link rel="stylesheet"
+            type="text/css"
+            href="style.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Anton&family=Arvo&display=swap"
+            rel="stylesheet">
+      <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet">
+</head>
+
+
+<body>
+      <div id="container">
+
+            <div class="ui-widget"
+                 id="search-bar">
+                  <input type="text"
+                         placeholder="Enter Team Name...">
+                  <button id="show-btn"
+                          onclick=fetchPlayers()>Show</button>
+                  <button id="dream-team-btn">Dream Team</button>
+                  <div id="auto-complete"></div>
+            </div>
+            <div id="players"></div>
+      </div>
+
+      <script id="player-template"
+              type="text/x-handlebars-template">
+              {{#each players}}
+                <div class="player" data-personid = "{{personId}}" data-teamid="{{teamId}}">
+                    <p class="name">{{firstName}} {{lastName}}</p>
+                    <p class="jersey">{{jersey}}</p>
+                    <div class="image-container">
+                        <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
+                        <div class="stats">
+                              <p class="height">{{height}}m</p>
+                              <p class="weight">{{weight}}kg</p>
+                        </div>
+                    </div>
+                    <p class="pos">{{pos}}</p>
+                    {{#if isDT}}
+                        <button disabled class="added">Added</button>
+                        {{else}}
+                        <button class="add-player-btn">Add To Roster</button>
+                    {{/if}}
+                </div>
+            {{/each}}
+           </script>
+      <script id="dream-team-template"
+              type="text/x-handlebars-template">
+              {{#each players}}
+                <div class="player" data-personid = "{{personId}}" data-teamid="{{teamId}}" style="background-color: #06D6A0;">
+                    <p class="name">{{firstName}} {{lastName}}</p>
+                    <p class="jersey">{{jersey}}</p>
+                    <div class="image-container">
+                        <img class="image" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="Image not found" onerror="this.src='https://newscdn.weigelbroadcasting.com/mRgPW-1573075860-150539-blog-bc_nba_abc.jpg';">
+                        <div class="stats">
+                              <p class="height">{{height}}</p>
+                              <p class="weight">{{weight}}</p>
+                        </div>
+                    </div>
+                    <p class="pos">{{pos}}</p>
+                    <button class="remove-player-btn">Remove</button>
+                </div>
+            {{/each}}
+           </script>
+
+      <script src="./handlebars/dist/handlebars.js"></script>
+      <script src="./jquery/dist/jquery.js"></script>
+      <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <script src="./player.js"></script>
+      <script src="renderer.js"></script>
+      <script src="main.js"></script>
+</body>
+
+</html>
