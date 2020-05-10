@@ -12,7 +12,7 @@ const json = {
 //get players
 urllib.request('http://data.nba.net/10s/prod/v1/2018/players.json', function (err, data, res) {
     if (err) {
-        throw err; // you need to handle error
+        throw err;
     }
     const playersData = JSON.parse(data).league.standard
     const players = playersData.filter(p => p.isActive == true)
@@ -25,7 +25,7 @@ urllib.request('http://data.nba.net/10s/prod/v1/2018/players.json', function (er
 //get teams
 urllib.request('http://data.nba.net/10s/prod/v1/2018/teams.json', function (err, data, res) {
     if (err) {
-        throw err; // you need to handle error
+        throw err;
     }
     const teamsData = JSON.parse(data).league.standard
     const teams = teamsData.map(t => { return { teamName: t.urlName, teamId: t.teamId } })

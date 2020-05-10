@@ -12,5 +12,4 @@ class Renderer {
             $("#players").append(`<p>Enter valid team name!</p>`)
         }
     }
-
 }

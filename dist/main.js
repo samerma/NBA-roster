@@ -1,5 +1,4 @@
 const renderer = new Renderer()
-let teamsList = []
 
 const fetchPlayers = function () {
     let input = $("input").val().toLowerCase()
@@ -27,7 +26,7 @@ $('#players').on('click', '.add-player-btn', function () {
     data.lastName = $player.find('.name').text().split(' ')[1]
     data.personId = $player.data("personid")
     data.teamId = $player.data("teamid")
-    data.jersey = $player.find('.jersey').text()       ////should i save player as data attribute instead??
+    data.jersey = $player.find('.jersey').text()
     data.pos = $player.find('.pos').text()
     data.height = $player.find('.height').text()
     data.weight = $player.find('.weight').text()
@@ -53,7 +52,6 @@ $('#players').on('click', '.remove-player-btn', function () {
         url: `roster/${personId}`,
         method: "DELETE",
         success: function (res) {
-            console.log(res);
             fetchDreamTeam()
         }
     })
@@ -66,6 +64,7 @@ $('#players').on('mouseleave', '.image-container', function () {
     $(this).find('.stats').hide(500)
 })
 
+//auto complete function
 $(function () {
     let teams = ["hawks", "celtics", "bullets", "nets", "hornets", "bulls", "cavaliers", "mavericks",
         "nuggets", "pistons", "warriors", "rockets", "pacers", "clippers", "lakers",
@@ -75,7 +74,7 @@ $(function () {
         })
     $('input').autocomplete({
         source: teams,
-        appendTo: "#auto-complete"
+        appendTo: "#auto-complete",
     })
     $.ui.autocomplete.filter = function (array, term) {//overide filter method to only match from biginning of word
         var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
